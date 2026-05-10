@@ -1,0 +1,124 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 5);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section class="hero">
+        <h1>Night Drive</h1>
+        <p class="tagline">Bradd Piontek, taking the long way.</p>
+      </section>
+
+      <section class="recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+          {posts.map((post) => (
+            <li>
+              <a href={`/blog/${post.id}/`}>
+                <span class="post-title">{post.data.title}</span>
+                <span class="post-meta">
+                  <FormattedDate date={post.data.pubDate} />
+                  {post.data.tags && post.data.tags.length > 0 && (
+                    <span class="tags">
+                      {post.data.tags.map((tag) => (
+                        <span class="tag">#{tag}</span>
+                      ))}
+                    </span>
+                  )}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <a href="/blog/" class="view-all">View all posts →</a>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
+<style>
+  .hero {
+    padding: 3em 0 2em;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3em;
+  }
+  .hero h1 {
+    font-size: 3em;
+    margin-bottom: 0.25em;
+  }
+  .tagline {
+    color: var(--text-muted);
+    font-size: 1.2em;
+    margin: 0;
+  }
+  .recent-posts h2 {
+    margin-bottom: 1.5em;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  ul li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1em 1.5em;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    gap: 1em;
+  }
+  ul li a:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 12px rgba(255, 45, 120, 0.2);
+  }
+  .post-title {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75em;
+    color: var(--text-muted);
+    font-size: 0.85em;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .tags {
+    display: flex;
+    gap: 0.4em;
+  }
+  .tag {
+    color: var(--accent-secondary);
+    font-size: 0.8em;
+  }
+  .view-all {
+    color: var(--accent);
+    font-size: 0.95em;
+  }
+  .view-all:hover {
+    color: var(--accent-secondary);
+  }
+</style>
