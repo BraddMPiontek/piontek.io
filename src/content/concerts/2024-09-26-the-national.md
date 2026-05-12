@@ -1,0 +1,64 @@
+---
+date: '2024-09-26'
+headliner: 'The National'
+headlinerUrl: 'https://www.americanmary.com/'
+support:
+  - name: 'The War on Drugs'
+    url: 'https://thewarondrugs.net/'
+  - name: 'Lucius'
+    url: 'https://www.ilovelucius.com/'
+venue: 'Breese Stevens Field'
+venueUrl: 'https://www.breesestevensfield.com/'
+city: 'Madison'
+state: 'WI'
+---
+
+## Lucius
+
+1. Nothing Ordinary
+2. Tempest
+3. Lucy
+4. Two of Us on the Run
+5. Old Tape
+6. Genevieve
+
+## The War on Drugs
+
+1. Brothers
+2. Pain
+3. An Ocean in Between the Waves
+4. I Don't Wanna Wait
+5. Red Eyes
+6. Strangest Thing
+7. Harmonia's Dream
+8. Lost in the Dream
+9. Under the Pressure
+10. I Don't Live Here Anymore *(with Lucius)*
+
+## The National
+
+**Main**
+
+1. Don't Swallow the Cap
+2. Eucalyptus
+3. Tropic Morning News
+4. Squalor Victoria
+5. Bloodbuzz Ohio
+6. The System Only Dreams in Total Darkness
+7. I Need My Girl
+8. Mistaken for Strangers
+9. Apartment Story
+10. Conversation 16
+11. Wasp Nest *(Tour debut)*
+12. Space Invader
+13. Day I Die
+14. Pink Rabbits
+15. England
+16. Graceless
+17. Fake Empire
+
+**Encore**
+
+1. Mr. November
+2. Terrible Love *(With "Not in Kansas" tease)*
+3. About Today

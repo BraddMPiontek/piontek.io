@@ -1,0 +1,344 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+
+export async function getStaticPaths() {
+  const concerts = await getCollection('concerts', ({ data }) => !data.draft);
+  return concerts.map((concert) => ({
+    params: { id: concert.id },
+    props: { concert, allConcerts: concerts },
+  }));
+}
+
+const { concert, allConcerts } = Astro.props;
+const { Content } = await render(concert);
+
+const { headliner, headlinerUrl, support, venue, venueUrl, city, state, date, rating, relatedArtists } = concert.data;
+const artistNames = [headliner, ...(relatedArtists ?? [])];
+
+const formattedDate = date.toLocaleDateString('en-US', {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
+
+const relatedHeadlining = allConcerts
+  .filter(c => artistNames.includes(c.data.headliner) && c.id !== concert.id)
+  .sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf());
+
+const relatedAsSupport = allConcerts
+  .filter(c => c.id !== concert.id && c.data.support?.some(act => artistNames.includes(act.name)))
+  .sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf());
+
+const seenCount = relatedHeadlining.length + relatedAsSupport.length + 1;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title={`${headliner} @ ${venue} | ${SITE_TITLE}`}
+      description={`${headliner} at ${venue}, ${city}, ${state} on ${formattedDate}`}
+    />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <div class="concert-header">
+        <a href="/concerts/" class="back">← All concerts</a>
+
+        <h1>
+          {headlinerUrl
+            ? <a href={headlinerUrl} target="_blank" class="headliner-link">{headliner}</a>
+            : headliner
+          }
+        </h1>
+
+        {seenCount > 1 && (
+          <p class="seen-count">Seen {seenCount} times</p>
+        )}
+
+        {support && support.length > 0 && (
+          <p class="support">
+            with {support.map((act, i) => (
+              <>
+                {act.url
+                  ? <a href={act.url} target="_blank">{act.name}</a>
+                  : act.name
+                }
+                {i < support.length - 1 ? ', ' : ''}
+              </>
+            ))}
+          </p>
+        )}
+
+        <div class="meta-row">
+          {venueUrl
+            ? <a href={venueUrl} target="_blank" class="venue">{venue}</a>
+            : <span class="venue">{venue}</span>
+          }
+          <span class="separator">·</span>
+          <span class="location">{city}, {state}</span>
+          <span class="separator">·</span>
+          <span class="date">{formattedDate}</span>
+        </div>
+
+        {rating && (
+          <div class="actions">
+            <span class="rating">
+              {Array.from({ length: 5 }, (_, i) => (
+                <span class={i < rating ? 'star filled' : 'star'}>★</span>
+              ))}
+            </span>
+          </div>
+        )}
+      </div>
+
+      <div class="prose">
+        <Content />
+      </div>
+
+      {(relatedHeadlining.length > 0 || relatedAsSupport.length > 0) && (
+        <div class="related-shows">
+          <h3>Other {headliner} shows</h3>
+          <ul>
+            {relatedHeadlining.map(show => (
+              <li>
+                <a href={`/concerts/${show.id}/`}>
+                  <span class="related-date">
+                    {show.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })}
+                  </span>
+                  <span class="related-venue">{show.data.venue}, {show.data.city}</span>
+                </a>
+              </li>
+            ))}
+            {relatedAsSupport.map(show => (
+              <li>
+                <a href={`/concerts/${show.id}/`}>
+                  <span class="related-date">
+                    {show.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })}
+                  </span>
+                  <span class="related-venue">{show.data.venue}, {show.data.city}</span>
+                  <span class="related-role">opening for {show.data.headliner}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </main>
+    <Footer />
+  </body>
+</html>
+<style>
+  .concert-header {
+    padding: 2em 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2em;
+  }
+  .back {
+    display: inline-block;
+    margin-bottom: 1.5em;
+    color: var(--accent-secondary);
+    font-size: 0.9em;
+    text-shadow: none;
+  }
+  h1 {
+    margin-bottom: 0.2em;
+  }
+  .headliner-link {
+    background: linear-gradient(90deg, var(--accent), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: none;
+  }
+  .headliner-link:hover {
+    text-shadow: none;
+    opacity: 0.8;
+  }
+  .seen-count {
+    display: inline-block;
+    font-size: 0.78em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent-secondary);
+    background: rgba(0, 229, 255, 0.08);
+    border: 1px solid rgba(0, 229, 255, 0.25);
+    border-radius: 999px;
+    padding: 0.2em 0.8em;
+    margin: 0.4em 0 0.75em;
+  }
+  .support {
+    color: var(--text-muted);
+    font-size: 1.1em;
+    margin: 0 0 1em;
+  }
+  .support a {
+    color: var(--accent-secondary);
+    text-decoration: none;
+  }
+  .support a:hover {
+    text-decoration: underline;
+    text-shadow: none;
+  }
+  .meta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75em;
+    flex-wrap: wrap;
+    margin-bottom: 1.5em;
+  }
+  .venue {
+    color: var(--accent-secondary);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .venue:hover {
+    text-decoration: underline;
+    text-shadow: none;
+  }
+  .separator {
+    color: var(--border);
+  }
+  .location, .date {
+    color: var(--accent-secondary);
+    opacity: 0.75;
+    text-shadow: 0 0 6px rgba(0, 229, 255, 0.35);
+  }
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    flex-wrap: wrap;
+  }
+  .rating {
+    display: flex;
+    gap: 0.1em;
+    font-size: 1.4em;
+  }
+  .star {
+    color: var(--border);
+  }
+  .star.filled {
+    color: var(--accent);
+  }
+  .prose {
+    max-width: 720px;
+  }
+  .prose h2 {
+    font-size: 1.1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent-secondary);
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+    border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+    padding-bottom: 0.3em;
+    margin: 1.5em 0 0.5em;
+  }
+  .prose ol {
+    padding-left: 0;
+    list-style: none;
+    counter-reset: setlist;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1em;
+  }
+  .prose ol li {
+    counter-increment: setlist;
+    display: flex;
+    align-items: baseline;
+    gap: 0.75em;
+    padding: 0.2em 0;
+    font-size: 0.95em;
+    color: var(--text);
+    border-bottom: 1px solid rgba(42, 42, 74, 0.5);
+  }
+  .prose ol li::before {
+    content: counter(setlist);
+    color: var(--accent);
+    font-size: 0.72em;
+    font-weight: 700;
+    min-width: 1.8em;
+    text-align: right;
+    opacity: 0.7;
+    flex-shrink: 0;
+  }
+  .prose ol li em {
+    color: var(--accent-purple);
+    font-style: italic;
+    font-size: 0.88em;
+    opacity: 0.85;
+  }
+
+  /* Related shows */
+  .related-shows {
+    margin-top: 3em;
+    padding-top: 2em;
+    border-top: 1px solid var(--border);
+    max-width: 720px;
+  }
+  .related-shows h3 {
+    font-size: 0.8em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent-secondary);
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.55);
+    margin: 0 0 1em;
+    padding-bottom: 0.4em;
+    border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+  }
+  .related-shows ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+  }
+  .related-shows li a {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 0.6em 1em;
+    background: linear-gradient(90deg, rgba(255, 45, 120, 0.04) 0%, var(--bg-surface) 40%);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--accent);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .related-shows li a:hover {
+    border-color: var(--accent);
+    border-left-color: var(--accent);
+    background: linear-gradient(90deg, rgba(255, 45, 120, 0.1) 0%, rgba(19, 19, 42, 0.9) 60%);
+    box-shadow: 0 0 14px rgba(255, 45, 120, 0.25);
+    text-shadow: none;
+  }
+  .related-date {
+    color: var(--accent-secondary);
+    font-size: 0.85em;
+    white-space: nowrap;
+    font-weight: 600;
+  }
+  .related-venue {
+    color: var(--accent-purple);
+    font-size: 0.85em;
+    opacity: 0.85;
+  }
+  .related-role {
+    color: var(--accent-secondary);
+    font-size: 0.78em;
+    font-style: italic;
+    opacity: 0.6;
+    margin-left: auto;
+  }
+</style>

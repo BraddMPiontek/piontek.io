@@ -1,0 +1,380 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+
+const concerts = (await getCollection('concerts', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const totalShows = concerts.length;
+
+const artistCounts: Record<string, number> = {};
+for (const c of concerts) {
+  artistCounts[c.data.headliner] = (artistCounts[c.data.headliner] || 0) + 1;
+  for (const act of c.data.support ?? []) {
+    artistCounts[act.name] = (artistCounts[act.name] || 0) + 1;
+  }
+}
+const uniqueArtists = Object.keys(artistCounts).length;
+const topArtists = Object.entries(artistCounts)
+  .sort((a, b) => b[1] - a[1])
+  .filter(([, count]) => count > 1);
+
+const years = concerts.map(c => c.data.date.getUTCFullYear());
+const yearMin = Math.min(...years);
+const yearMax = Math.max(...years);
+
+const byYear: Record<number, typeof concerts> = {};
+for (const c of concerts) {
+  const year = c.data.date.getUTCFullYear();
+  if (!byYear[year]) byYear[year] = [];
+  byYear[year].push(c);
+}
+const sortedYears = Object.keys(byYear).map(Number).sort((a, b) => b - a);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`Concerts | ${SITE_TITLE}`} description="Every show I've attended since 1990." />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <div class="page-header">
+        <h1>Concerts</h1>
+        <p class="subtitle">{totalShows} shows &middot; {uniqueArtists} artists &middot; {yearMin}&ndash;{yearMax}</p>
+      </div>
+
+      <div class="stats-bar">
+        <div class="stat">
+          <span class="stat-value">{totalShows}</span>
+          <span class="stat-label">shows</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-value">{uniqueArtists}</span>
+          <span class="stat-label">artists</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-value">{yearMax - yearMin + 1}</span>
+          <span class="stat-label">years</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat repeat-artists">
+          <span class="stat-label seen-label">seen multiple times:</span>
+          {topArtists.map(([name, count], i) => (
+            <span class="repeat-artist">
+              {name} <span class="repeat-count">×{count}</span>{i < topArtists.length - 1 ? <span class="comma">,</span> : ''}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div class="year-nav">
+        {sortedYears.map(year => (
+          <a href={`#year-${year}`} class="year-pill">{year}</a>
+        ))}
+      </div>
+
+      <div class="filter-row">
+        <input
+          type="search"
+          id="concert-filter"
+          placeholder="Filter by artist..."
+          autocomplete="off"
+        />
+      </div>
+
+      <div id="concert-list">
+        {sortedYears.map(year => (
+          <div class="year-section" data-year={year}>
+            <h2 class="year-heading" id={`year-${year}`}>{year}</h2>
+            <ul class="concert-list">
+              {byYear[year].map(concert => (
+                <li class="concert-item" data-artists={[concert.data.headliner, ...(concert.data.support?.map(a => a.name) ?? [])].join('\t').toLowerCase()}>
+                  <a href={`/concerts/${concert.id}/`}>
+                    <div class="concert-main">
+                      <span class="headliner">{concert.data.headliner}</span>
+                      {concert.data.support && concert.data.support.length > 0 && (
+                        <span class="support">w/ {concert.data.support.map(act => act.name).join(', ')}</span>
+                      )}
+                    </div>
+                    <div class="concert-meta">
+                      <span class="venue">{concert.data.venue}, {concert.data.city}</span>
+                      <span class="date">{concert.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' })}</span>
+                    </div>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <div id="no-results" style="display:none">
+        <p class="no-results-text">No shows found.</p>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<script>
+  const input = document.getElementById('concert-filter') as HTMLInputElement;
+  const noResults = document.getElementById('no-results')!;
+
+  input.addEventListener('input', () => {
+    const q = input.value.toLowerCase().trim();
+    let anyVisible = false;
+
+    document.querySelectorAll<HTMLElement>('.year-section').forEach(section => {
+      let sectionVisible = false;
+      section.querySelectorAll<HTMLElement>('.concert-item').forEach(item => {
+        const match = !q || item.dataset.artists!.includes(q);
+        item.style.display = match ? '' : 'none';
+        if (match) sectionVisible = true;
+      });
+      section.style.display = sectionVisible ? '' : 'none';
+      if (sectionVisible) anyVisible = true;
+    });
+
+    noResults.style.display = anyVisible || !q ? 'none' : 'block';
+  });
+</script>
+
+<style>
+  .page-header {
+    padding: 2em 0 1.5em;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.5em;
+  }
+  .page-header h1 {
+    margin-bottom: 0.25em;
+  }
+  .subtitle {
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  /* Stats bar */
+  .stats-bar {
+    display: flex;
+    align-items: center;
+    gap: 1.25em;
+    padding: 1em 1.5em;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 1.5em;
+    flex-wrap: wrap;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1em;
+  }
+  .stat-value {
+    font-size: 1.4em;
+    font-weight: 700;
+    color: var(--accent);
+    text-shadow: 0 0 10px rgba(255, 45, 120, 0.5);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.7em;
+    color: var(--accent-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 6px rgba(0, 229, 255, 0.4);
+    opacity: 0.8;
+  }
+  .stat-divider {
+    width: 1px;
+    height: 2em;
+    background: rgba(0, 229, 255, 0.15);
+    flex-shrink: 0;
+  }
+  .repeat-artists {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5em;
+    flex-wrap: wrap;
+  }
+  .seen-label {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.7em;
+    color: var(--accent-secondary);
+    text-shadow: 0 0 6px rgba(0, 229, 255, 0.4);
+    opacity: 0.8;
+    margin-right: 0.25em;
+    white-space: nowrap;
+  }
+  .repeat-artist {
+    font-size: 0.85em;
+    color: var(--accent-purple);
+  }
+  .repeat-count {
+    color: var(--accent-secondary);
+    font-weight: 700;
+    text-shadow: 0 0 6px rgba(0, 229, 255, 0.5);
+  }
+  .comma {
+    color: var(--border);
+  }
+
+  /* Year nav */
+  .year-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4em;
+    margin-bottom: 1.25em;
+  }
+  .year-pill {
+    display: inline-block;
+    padding: 0.25em 0.75em;
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    border-radius: 999px;
+    color: var(--accent-secondary);
+    font-size: 0.78em;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    text-shadow: 0 0 6px rgba(0, 229, 255, 0.35);
+    transition: all 0.2s ease;
+  }
+  .year-pill:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    text-shadow: 0 0 10px rgba(255, 45, 120, 0.6);
+    box-shadow: 0 0 10px rgba(255, 45, 120, 0.2);
+    background: rgba(255, 45, 120, 0.07);
+  }
+
+  /* Filter */
+  .filter-row {
+    margin-bottom: 1.5em;
+  }
+  #concert-filter {
+    width: 100%;
+    padding: 0.6em 1em;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  #concert-filter:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(255, 45, 120, 0.15);
+  }
+  #concert-filter::placeholder {
+    color: var(--text-muted);
+  }
+
+  /* Year sections */
+  .year-section {
+    margin-bottom: 2em;
+  }
+  .year-heading {
+    font-size: 0.8em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent-secondary);
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.55);
+    margin: 0 0 0.75em;
+    padding-bottom: 0.4em;
+    border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+  }
+
+  /* Concert list */
+  .concert-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .concert-list li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75em 1.25em;
+    background: linear-gradient(90deg, rgba(255, 45, 120, 0.04) 0%, var(--bg-surface) 40%);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--accent);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    gap: 1em;
+  }
+  .concert-list li a:hover {
+    border-color: var(--accent);
+    border-left-color: var(--accent);
+    background: linear-gradient(90deg, rgba(255, 45, 120, 0.1) 0%, rgba(19, 19, 42, 0.9) 60%);
+    box-shadow: 0 0 16px rgba(255, 45, 120, 0.25), inset 0 0 20px rgba(255, 45, 120, 0.04);
+    text-shadow: none;
+  }
+  .concert-main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15em;
+  }
+  .headliner {
+    color: var(--text);
+    font-weight: 600;
+    font-size: 1em;
+  }
+  .support {
+    color: var(--accent-purple);
+    font-size: 0.82em;
+    opacity: 0.85;
+  }
+  .concert-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.15em;
+    flex-shrink: 0;
+  }
+  .venue {
+    color: var(--accent-secondary);
+    font-size: 0.82em;
+  }
+  .date {
+    color: var(--accent-secondary);
+    font-size: 0.78em;
+    white-space: nowrap;
+    opacity: 0.7;
+  }
+  .no-results-text {
+    color: var(--text-muted);
+    text-align: center;
+    padding: 3em 0;
+  }
+
+  @media (max-width: 720px) {
+    .stats-bar {
+      gap: 0.75em;
+    }
+    .stat-divider {
+      display: none;
+    }
+    .concert-list li a {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .concert-meta {
+      align-items: flex-start;
+    }
+  }
+</style>
