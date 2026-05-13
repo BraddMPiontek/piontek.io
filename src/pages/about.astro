@@ -1,11 +1,38 @@
 ---
-import Layout from '../layouts/BlogPost.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
 ---
 
-<Layout
-  title="About"
-  description="About Bradd Piontek"
-  pubDate={new Date('2026-01-01')}
->
-  <p>Coming soon.</p>
-</Layout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`About | ${SITE_TITLE}`} description="About Bradd Piontek" />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <h1>About</h1>
+      <div class="prose">
+        <p>I've been living in the Madison area since 1998. Going to concerts since 1990 and, apparently, documenting them since I figured out I could build a website about it.</p>
+        <p>When I'm not at a show I'm usually out for a top-down drive, taking the long way somewhere. Road trips, travel photography, vinyl.</p>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
+<style>
+  h1 {
+    margin-bottom: 0.5em;
+  }
+  .prose {
+    max-width: 600px;
+  }
+  .prose p {
+    color: var(--text);
+    font-size: 1.1em;
+    line-height: 1.8;
+    margin-bottom: 1.25em;
+  }
+</style>

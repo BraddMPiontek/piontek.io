@@ -2,13 +2,28 @@
 import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
-const posts = (await getCollection('blog', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 5);
+const concerts = (await getCollection('concerts', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const totalShows = concerts.length;
+
+const artistCounts: Record<string, number> = {};
+for (const c of concerts) {
+  artistCounts[c.data.headliner] = (artistCounts[c.data.headliner] || 0) + 1;
+  for (const act of c.data.support ?? []) {
+    artistCounts[act.name] = (artistCounts[act.name] || 0) + 1;
+  }
+}
+const uniqueArtists = Object.keys(artistCounts).length;
+
+const years = concerts.map(c => c.data.date.getUTCFullYear());
+const yearMin = Math.min(...years);
+const yearMax = Math.max(...years);
+
+const recentShows = concerts.slice(0, 5);
 ---
 
 <!doctype html>
@@ -24,28 +39,38 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         <p class="tagline">Bradd Piontek, taking the long way.</p>
       </section>
 
-      <section class="recent-posts">
-        <h2>Recent Posts</h2>
-        <ul>
-          {posts.map((post) => (
+      <section class="concerts-teaser">
+        <div class="section-header">
+          <h2>Concerts</h2>
+          <div class="mini-stats">
+            <span><span class="stat-num">{totalShows}</span> shows</span>
+            <span class="dot">·</span>
+            <span><span class="stat-num">{uniqueArtists}</span> artists</span>
+            <span class="dot">·</span>
+            <span><span class="stat-num">{yearMax - yearMin + 1}</span> years</span>
+          </div>
+        </div>
+
+        <ul class="show-list">
+          {recentShows.map(concert => (
             <li>
-              <a href={`/blog/${post.id}/`}>
-                <span class="post-title">{post.data.title}</span>
-                <span class="post-meta">
-                  <FormattedDate date={post.data.pubDate} />
-                  {post.data.tags && post.data.tags.length > 0 && (
-                    <span class="tags">
-                      {post.data.tags.map((tag) => (
-                        <span class="tag">#{tag}</span>
-                      ))}
-                    </span>
+              <a href={`/concerts/${concert.id}/`}>
+                <div class="show-main">
+                  <span class="headliner">{concert.data.headliner}</span>
+                  {concert.data.support && concert.data.support.length > 0 && (
+                    <span class="support">w/ {concert.data.support.map(a => a.name).join(', ')}</span>
                   )}
-                </span>
+                </div>
+                <div class="show-meta">
+                  <span class="venue">{concert.data.venue}, {concert.data.city}</span>
+                  <span class="date">{concert.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })}</span>
+                </div>
               </a>
             </li>
           ))}
         </ul>
-        <a href="/blog/" class="view-all">View all posts →</a>
+
+        <a href="/concerts/" class="view-all">View all {totalShows} shows →</a>
       </section>
     </main>
     <Footer />
@@ -55,70 +80,131 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .hero {
     padding: 3em 0 2em;
     border-bottom: 1px solid var(--border);
-    margin-bottom: 3em;
-  }
-  .hero h1 {
-    font-size: 3em;
-    margin-bottom: 0.25em;
+    margin-bottom: 2.5em;
   }
   .tagline {
-    color: var(--text-muted);
-    font-size: 1.2em;
+    color: var(--accent-secondary);
+    font-size: 1.15em;
+    margin: 0;
+    opacity: 0.8;
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
+  }
+
+  /* Concerts teaser */
+  .concerts-teaser {
+    margin-bottom: 3em;
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.25em;
+    margin-bottom: 1.25em;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+    flex-wrap: wrap;
+  }
+  .section-header h2 {
+    font-size: 0.8em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent-secondary);
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.55);
     margin: 0;
   }
-  .recent-posts h2 {
-    margin-bottom: 1.5em;
+  .mini-stats {
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+    font-size: 0.78em;
+    color: var(--text-muted);
   }
-  ul {
+  .stat-num {
+    color: var(--accent);
+    font-weight: 700;
+    text-shadow: 0 0 8px rgba(255, 45, 120, 0.4);
+  }
+  .dot {
+    color: var(--border);
+  }
+
+  .show-list {
     list-style: none;
     padding: 0;
-    margin: 0 0 2em;
+    margin: 0 0 1.25em;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.4rem;
   }
-  ul li a {
+  .show-list li a {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
-    padding: 1em 1.5em;
-    background: var(--bg-surface);
+    align-items: center;
+    padding: 0.75em 1.25em;
+    background: linear-gradient(90deg, rgba(255, 45, 120, 0.04) 0%, var(--bg-surface) 40%);
     border: 1px solid var(--border);
+    border-left: 2px solid var(--accent);
     border-radius: 8px;
     text-decoration: none;
     transition: all 0.2s ease;
     gap: 1em;
   }
-  ul li a:hover {
+  .show-list li a:hover {
     border-color: var(--accent);
-    box-shadow: 0 0 12px rgba(255, 45, 120, 0.2);
+    border-left-color: var(--accent);
+    background: linear-gradient(90deg, rgba(255, 45, 120, 0.1) 0%, rgba(19, 19, 42, 0.9) 60%);
+    box-shadow: 0 0 16px rgba(255, 45, 120, 0.25);
+    text-shadow: none;
   }
-  .post-title {
+  .show-main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15em;
+  }
+  .headliner {
     color: var(--text);
     font-weight: 600;
+    font-size: 1em;
   }
-  .post-meta {
+  .support {
+    color: var(--accent-purple);
+    font-size: 0.82em;
+    opacity: 0.85;
+  }
+  .show-meta {
     display: flex;
-    align-items: center;
-    gap: 0.75em;
-    color: var(--text-muted);
-    font-size: 0.85em;
-    white-space: nowrap;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.15em;
     flex-shrink: 0;
   }
-  .tags {
-    display: flex;
-    gap: 0.4em;
-  }
-  .tag {
+  .venue {
     color: var(--accent-secondary);
-    font-size: 0.8em;
+    font-size: 0.82em;
   }
+  .date {
+    color: var(--accent-secondary);
+    font-size: 0.78em;
+    white-space: nowrap;
+    opacity: 0.7;
+  }
+
   .view-all {
     color: var(--accent);
     font-size: 0.95em;
+    text-shadow: none;
   }
   .view-all:hover {
     color: var(--accent-secondary);
+  }
+
+  @media (max-width: 720px) {
+    .show-list li a {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .show-meta {
+      align-items: flex-start;
+    }
   }
 </style>
