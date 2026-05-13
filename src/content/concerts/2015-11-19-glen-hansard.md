@@ -11,4 +11,7 @@ venue: 'Orpheum Theater'
 venueUrl: 'https://madisonorpheum.com/'
 city: 'Madison'
 state: 'WI'
+videos:
+  - title: 'Falling Slowly (with Aoife O''Donovan)'
+    url: 'https://www.youtube.com/watch?v=9LVyRyyvDTQ'
 ---

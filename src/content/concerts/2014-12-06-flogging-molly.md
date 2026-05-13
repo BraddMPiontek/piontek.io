@@ -10,4 +10,7 @@ venue: 'Orpheum Theater'
 venueUrl: 'https://madisonorpheum.com/'
 city: 'Madison'
 state: 'WI'
+videos:
+  - title: 'If I Ever Leave This World Alive'
+    url: 'https://www.youtube.com/watch?v=o7EJhoUCeqE'
 ---

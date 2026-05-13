@@ -13,6 +13,13 @@ venueUrl: 'https://pabsttheater.org/venue/the-riverside-theater/'
 city: 'Milwaukee'
 state: 'WI'
 setlistUrl: 'https://www.setlist.fm/setlist/counting-crows/2014/riverside-theater-milwaukee-wi-13c10135.html'
+videos:
+  - title: 'Rain King / Oh! Susanna'
+    url: 'https://www.youtube.com/watch?v=QtlNWuJXH8E'
+  - title: 'Palisades Park'
+    url: 'https://www.youtube.com/watch?v=qDguoFb9wEE'
+  - title: 'A Long December'
+    url: 'https://www.youtube.com/watch?v=N0NkHt1u66U'
 ---
 
 ## Setlist

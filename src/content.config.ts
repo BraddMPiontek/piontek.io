@@ -38,6 +38,10 @@ const concerts = defineCollection({
       coverImage: z.optional(image()),
       rating: z.number().min(1).max(5).optional(),
       relatedArtists: z.array(z.string()).optional(),
+      videos: z.array(z.object({
+        title: z.string(),
+        url: z.string().url(),
+      })).optional(),
       draft: z.boolean().optional(),
     }),
 });

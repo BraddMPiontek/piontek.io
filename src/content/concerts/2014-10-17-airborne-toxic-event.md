@@ -9,4 +9,7 @@ venue: 'The Eagles Club'
 venueUrl: 'https://www.therave.com/main.asp'
 city: 'Milwaukee'
 state: 'WI'
+videos:
+  - title: 'The Airborne Toxic Event (footage)'
+    url: 'https://www.youtube.com/watch?v=FVQGFnrMypM'
 ---

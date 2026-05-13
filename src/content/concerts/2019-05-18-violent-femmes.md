@@ -7,6 +7,9 @@ support:
     url: 'https://whiskeybelles.com/home'
 venue: 'The Sylvee'
 venueUrl: 'https://www.thesylvee.com/'
+videos:
+  - title: 'Blister in the Sun'
+    url: 'https://www.youtube.com/watch?v=2p3l2Fw5GmU'
 city: 'Madison'
 state: 'WI'
 ---
