@@ -87,6 +87,7 @@ const sortedYears = Object.keys(byYear).map(Number).sort((a, b) => b - a);
           placeholder="Filter by artist..."
           autocomplete="off"
         />
+        <button id="video-filter" class="video-filter-btn" aria-pressed="false">▶ Has video</button>
       </div>
 
       <div id="concert-list">
@@ -95,7 +96,9 @@ const sortedYears = Object.keys(byYear).map(Number).sort((a, b) => b - a);
             <h2 class="year-heading" id={`year-${year}`}>{year}</h2>
             <ul class="concert-list">
               {byYear[year].map(concert => (
-                <li class="concert-item" data-artists={[concert.data.headliner, ...(concert.data.support?.map(a => a.name) ?? [])].join('\t').toLowerCase()}>
+                <li class="concert-item"
+                  data-artists={[concert.data.headliner, ...(concert.data.support?.map(a => a.name) ?? [])].join('\t').toLowerCase()}
+                  data-has-video={concert.data.videos && concert.data.videos.length > 0 ? 'true' : 'false'}>
                   <a href={`/concerts/${concert.id}/`}>
                     <div class="concert-main">
                       <span class="headliner">{concert.data.headliner}</span>
@@ -104,6 +107,9 @@ const sortedYears = Object.keys(byYear).map(Number).sort((a, b) => b - a);
                       )}
                     </div>
                     <div class="concert-meta">
+                      {concert.data.videos && concert.data.videos.length > 0 && (
+                        <span class="media-badge">▶ video</span>
+                      )}
                       <span class="venue">{concert.data.venue}, {concert.data.city}</span>
                       <span class="date">{concert.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' })}</span>
                     </div>
@@ -125,16 +131,20 @@ const sortedYears = Object.keys(byYear).map(Number).sort((a, b) => b - a);
 
 <script>
   const input = document.getElementById('concert-filter') as HTMLInputElement;
+  const videoBtn = document.getElementById('video-filter') as HTMLButtonElement;
   const noResults = document.getElementById('no-results')!;
+  let videoOnly = false;
 
-  input.addEventListener('input', () => {
+  function applyFilters() {
     const q = input.value.toLowerCase().trim();
     let anyVisible = false;
 
     document.querySelectorAll<HTMLElement>('.year-section').forEach(section => {
       let sectionVisible = false;
       section.querySelectorAll<HTMLElement>('.concert-item').forEach(item => {
-        const match = !q || item.dataset.artists!.includes(q);
+        const artistMatch = !q || item.dataset.artists!.includes(q);
+        const videoMatch = !videoOnly || item.dataset.hasVideo === 'true';
+        const match = artistMatch && videoMatch;
         item.style.display = match ? '' : 'none';
         if (match) sectionVisible = true;
       });
@@ -142,7 +152,16 @@ const sortedYears = Object.keys(byYear).map(Number).sort((a, b) => b - a);
       if (sectionVisible) anyVisible = true;
     });
 
-    noResults.style.display = anyVisible || !q ? 'none' : 'block';
+    noResults.style.display = anyVisible || (!q && !videoOnly) ? 'none' : 'block';
+  }
+
+  input.addEventListener('input', applyFilters);
+
+  videoBtn.addEventListener('click', () => {
+    videoOnly = !videoOnly;
+    videoBtn.setAttribute('aria-pressed', String(videoOnly));
+    videoBtn.classList.toggle('active', videoOnly);
+    applyFilters();
   });
 </script>
 
@@ -259,8 +278,12 @@ const sortedYears = Object.keys(byYear).map(Number).sort((a, b) => b - a);
   /* Filter */
   .filter-row {
     margin-bottom: 1.5em;
+    display: flex;
+    gap: 0.6em;
+    align-items: center;
   }
   #concert-filter {
+    flex: 1;
     width: 100%;
     padding: 0.6em 1em;
     background: var(--bg-surface);
@@ -277,6 +300,40 @@ const sortedYears = Object.keys(byYear).map(Number).sort((a, b) => b - a);
   }
   #concert-filter::placeholder {
     color: var(--text-muted);
+  }
+  .video-filter-btn {
+    padding: 0.6em 1em;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-muted);
+    font-size: 0.85em;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+  }
+  .video-filter-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .video-filter-btn.active {
+    background: rgba(255, 45, 120, 0.12);
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 10px rgba(255, 45, 120, 0.2);
+  }
+  .media-badge {
+    display: inline-block;
+    font-size: 0.7em;
+    font-weight: 700;
+    color: var(--accent);
+    background: rgba(255, 45, 120, 0.1);
+    border: 1px solid rgba(255, 45, 120, 0.3);
+    border-radius: 999px;
+    padding: 0.1em 0.55em;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 6px rgba(255, 45, 120, 0.5);
   }
 
   /* Year sections */
