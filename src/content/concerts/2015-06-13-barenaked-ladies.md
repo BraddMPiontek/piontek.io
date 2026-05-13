@@ -27,17 +27,14 @@ setlistUrl: 'https://www.setlist.fm/setlist/barenaked-ladies/2015/bmo-harris-pav
 4. Gonna Walk
 5. Brian Wilson
 6. Narrow Streets
-7. Who Can It Be Now? *((Men at Workcover)
-
-
-(withColin Hay))*
+7. Who Can It Be Now? *((Men at Workcover) (withColin Hay))* 
 8. Matter of Time
 9. Testing 1,2,3
 10. Passcode
 11. Light Up My Room
 12. Did I Say That Out Loud?
 13. Duct Tape Heart
-14. Pinch Me *((withColin Hay))*
+14. Pinch Me *((withColin Hay))* 
 15. Big Bang Theory Theme
 16. One Week
 17. If I Had $1000000
@@ -46,4 +43,4 @@ setlistUrl: 'https://www.setlist.fm/setlist/barenaked-ladies/2015/bmo-harris-pav
 **Encore**
 
 1. Drawing
-2. Rock and Roll *((Led Zeppelincover))*
+2. Rock and Roll *((Led Zeppelincover))* 

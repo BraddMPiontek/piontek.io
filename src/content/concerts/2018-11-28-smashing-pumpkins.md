@@ -21,23 +21,15 @@ rating: 5
 1. Solara
 2. Zero
 3. Today
-4. Never Let Me Down Again *((Depeche Modecover)
-
-
-
-(first since 1995))*
-5. Knights of Malta *((live debut))*
+4. Never Let Me Down Again *((Depeche Modecover) (first since 1995))* 
+5. Knights of Malta *((live debut))* 
 6. Tonight, Tonight
-7. Dross *((first since 2000))*
-8. Friday I'm in Love *((The Curecover)
-
-
-
-(Live debut))*
+7. Dross *((first since 2000))* 
+8. Friday I'm in Love *((The Curecover) (Live debut))* 
 9. Disarm
 10. Bullet With Butterfly Wings
 11. Porcelina of the Vast Oceans
-12. Travels *((live debut))*
+12. Travels *((live debut))* 
 13. Cherub Rock
 14. 1979
 15. Ava Adore

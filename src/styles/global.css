@@ -152,6 +152,42 @@ hr {
 	}
 }
 
+/* Pagefind search UI overrides */
+:root {
+  --pagefind-ui-scale: 0.8;
+  --pagefind-ui-primary: var(--accent-secondary);
+  --pagefind-ui-text: var(--text);
+  --pagefind-ui-background: var(--bg-surface);
+  --pagefind-ui-border: var(--border);
+  --pagefind-ui-tag: var(--bg);
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: 6px;
+  --pagefind-ui-font: inherit;
+}
+.pagefind-ui__search-input {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+.pagefind-ui__search-input:focus {
+  border-color: var(--accent-secondary) !important;
+  box-shadow: 0 0 0 2px rgba(0, 229, 255, 0.2) !important;
+  outline: none !important;
+}
+.pagefind-ui__result {
+  border-color: var(--border) !important;
+}
+.pagefind-ui__result-link {
+  color: var(--accent-secondary) !important;
+}
+.pagefind-ui__result-excerpt {
+  color: var(--text-muted) !important;
+}
+mark {
+  background: rgba(255, 45, 120, 0.25) !important;
+  color: var(--accent) !important;
+}
+
 .sr-only {
 	border: 0;
 	padding: 0;

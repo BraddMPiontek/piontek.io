@@ -22,14 +22,10 @@ state: 'IL'
 ## Cheap Trick
 
 1. Long Time No See Ya
-2. The "In" Crowd *((Dobie Graycover))*
+2. The "In" Crowd *((Dobie Graycover))* 
 3. Daddy Should Have Stayed in High School
 4. Stiff Competition
-5. I'm Waiting for the Man *((The Velvet Undergroundcover)
-
-
-
-(Tom Petersson on lead vocals) (with 'Heroin' snippet) (followed by band introductions))*
+5. I'm Waiting for the Man *((The Velvet Undergroundcover) (Tom Petersson on lead vocals) (with 'Heroin' snippet) (followed by band introductions))* 
 6. I Want You to Want Me
 7. Dream Police
 8. Surrender
@@ -52,6 +48,6 @@ state: 'IL'
 2. What's This Generation Coming To?
 3. Back on Me
 4. Take Me
-5. Girl, You'll Be a Woman Soon *((Neil Diamondcover))*
+5. Girl, You'll Be a Woman Soon *((Neil Diamondcover))* 
 6. Stull, Part 1
 7. Sister Havana
