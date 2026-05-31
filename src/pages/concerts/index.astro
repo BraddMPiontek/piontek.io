@@ -87,7 +87,7 @@ const sortedYears = Object.keys(byYear).map(Number).sort((a, b) => b - a);
           placeholder="Filter by artist..."
           autocomplete="off"
         />
-        <button id="video-filter" class="video-filter-btn" aria-pressed="false">▶ Has video</button>
+        <button id="media-filter" class="media-filter-btn" aria-pressed="false">◎ Has media</button>
       </div>
 
       <div id="concert-list">
@@ -98,7 +98,7 @@ const sortedYears = Object.keys(byYear).map(Number).sort((a, b) => b - a);
               {byYear[year].map(concert => (
                 <li class="concert-item"
                   data-artists={[concert.data.headliner, ...(concert.data.support?.map(a => a.name) ?? [])].join('\t').toLowerCase()}
-                  data-has-video={concert.data.videos && concert.data.videos.length > 0 ? 'true' : 'false'}>
+                  data-has-media={(concert.data.videos?.length || concert.data.photos?.length) ? 'true' : 'false'}>
                   <a href={`/concerts/${concert.id}/`}>
                     <div class="concert-main">
                       <span class="headliner">{concert.data.headliner}</span>
@@ -107,9 +107,14 @@ const sortedYears = Object.keys(byYear).map(Number).sort((a, b) => b - a);
                       )}
                     </div>
                     <div class="concert-meta">
-                      {concert.data.videos && concert.data.videos.length > 0 && (
-                        <span class="media-badge">▶ video</span>
-                      )}
+                      <div class="badge-row">
+                        {concert.data.videos && concert.data.videos.length > 0 && (
+                          <span class="media-badge">▶ video</span>
+                        )}
+                        {concert.data.photos && concert.data.photos.length > 0 && (
+                          <span class="media-badge photo-badge">◎ photos</span>
+                        )}
+                      </div>
                       <span class="venue">{concert.data.venue}, {concert.data.city}</span>
                       <span class="date">{concert.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' })}</span>
                     </div>
@@ -131,9 +136,9 @@ const sortedYears = Object.keys(byYear).map(Number).sort((a, b) => b - a);
 
 <script>
   const input = document.getElementById('concert-filter') as HTMLInputElement;
-  const videoBtn = document.getElementById('video-filter') as HTMLButtonElement;
+  const mediaBtn = document.getElementById('media-filter') as HTMLButtonElement;
   const noResults = document.getElementById('no-results')!;
-  let videoOnly = false;
+  let mediaOnly = false;
 
   function applyFilters() {
     const q = input.value.toLowerCase().trim();
@@ -143,8 +148,8 @@ const sortedYears = Object.keys(byYear).map(Number).sort((a, b) => b - a);
       let sectionVisible = false;
       section.querySelectorAll<HTMLElement>('.concert-item').forEach(item => {
         const artistMatch = !q || item.dataset.artists!.includes(q);
-        const videoMatch = !videoOnly || item.dataset.hasVideo === 'true';
-        const match = artistMatch && videoMatch;
+        const mediaMatch = !mediaOnly || item.dataset.hasMedia === 'true';
+        const match = artistMatch && mediaMatch;
         item.style.display = match ? '' : 'none';
         if (match) sectionVisible = true;
       });
@@ -152,15 +157,15 @@ const sortedYears = Object.keys(byYear).map(Number).sort((a, b) => b - a);
       if (sectionVisible) anyVisible = true;
     });
 
-    noResults.style.display = anyVisible || (!q && !videoOnly) ? 'none' : 'block';
+    noResults.style.display = anyVisible || (!q && !mediaOnly) ? 'none' : 'block';
   }
 
   input.addEventListener('input', applyFilters);
 
-  videoBtn.addEventListener('click', () => {
-    videoOnly = !videoOnly;
-    videoBtn.setAttribute('aria-pressed', String(videoOnly));
-    videoBtn.classList.toggle('active', videoOnly);
+  mediaBtn.addEventListener('click', () => {
+    mediaOnly = !mediaOnly;
+    mediaBtn.setAttribute('aria-pressed', String(mediaOnly));
+    mediaBtn.classList.toggle('active', mediaOnly);
     applyFilters();
   });
 </script>
@@ -301,7 +306,7 @@ const sortedYears = Object.keys(byYear).map(Number).sort((a, b) => b - a);
   #concert-filter::placeholder {
     color: var(--text-muted);
   }
-  .video-filter-btn {
+  .media-filter-btn {
     padding: 0.6em 1em;
     background: var(--bg-surface);
     border: 1px solid var(--border);
@@ -313,15 +318,20 @@ const sortedYears = Object.keys(byYear).map(Number).sort((a, b) => b - a);
     white-space: nowrap;
     transition: all 0.2s ease;
   }
-  .video-filter-btn:hover {
+  .media-filter-btn:hover {
     border-color: var(--accent);
     color: var(--accent);
   }
-  .video-filter-btn.active {
+  .media-filter-btn.active {
     background: rgba(255, 45, 120, 0.12);
     border-color: var(--accent);
     color: var(--accent);
     box-shadow: 0 0 10px rgba(255, 45, 120, 0.2);
+  }
+  .badge-row {
+    display: flex;
+    gap: 0.3em;
+    justify-content: flex-end;
   }
   .media-badge {
     display: inline-block;
@@ -334,6 +344,12 @@ const sortedYears = Object.keys(byYear).map(Number).sort((a, b) => b - a);
     padding: 0.1em 0.55em;
     letter-spacing: 0.05em;
     text-shadow: 0 0 6px rgba(255, 45, 120, 0.5);
+  }
+  .photo-badge {
+    color: var(--accent-secondary);
+    background: rgba(0, 229, 255, 0.08);
+    border-color: rgba(0, 229, 255, 0.3);
+    text-shadow: 0 0 6px rgba(0, 229, 255, 0.5);
   }
 
   /* Year sections */
