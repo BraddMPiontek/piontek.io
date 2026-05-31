@@ -12,6 +12,10 @@ city: 'Madison'
 state: 'WI'
 setlistUrl: 'https://www.setlist.fm/setlist/the-smashing-pumpkins/2018/the-sylvee-madison-wi-7397229d.html'
 rating: 5
+coverImage: 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2018-11-28-smashing-pumpkins/0_IMG_0955.jpg'
+photos:
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2018-11-28-smashing-pumpkins/0_IMG_0955.jpg'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2018-11-28-smashing-pumpkins/0_IMG_0957.jpg'
 ---
 
 ## Setlist

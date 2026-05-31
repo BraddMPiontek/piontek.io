@@ -8,6 +8,10 @@ venueUrl: 'https://en.wikipedia.org/wiki/Bradley_Center'
 city: 'Milwaukee'
 state: 'WI'
 setlistUrl: 'https://www.setlist.fm/setlist/bruce-springsteen/2016/bmo-harris-bradley-center-milwaukee-wi-5bf09708.html'
+coverImage: 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2016-03-03-bruce-springsteen/0_004.JPG'
+photos:
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2016-03-03-bruce-springsteen/0_004.JPG'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2016-03-03-bruce-springsteen/0_007.JPG'
 ---
 
 ## Setlist

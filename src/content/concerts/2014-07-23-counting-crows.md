@@ -20,6 +20,11 @@ videos:
     url: 'https://www.youtube.com/watch?v=qDguoFb9wEE'
   - title: 'A Long December'
     url: 'https://www.youtube.com/watch?v=N0NkHt1u66U'
+coverImage: 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2014-07-23-counting-crows/0_001.JPG'
+photos:
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2014-07-23-counting-crows/0_001.JPG'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2014-07-23-counting-crows/0_004.JPG'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2014-07-23-counting-crows/0_IMG_0765.JPG'
 ---
 
 ## Setlist

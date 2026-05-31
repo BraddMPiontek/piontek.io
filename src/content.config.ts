@@ -35,7 +35,8 @@ const concerts = defineCollection({
       city: z.string(),
       state: z.string(),
       setlistUrl: z.string().url().optional(),
-      coverImage: z.optional(image()),
+      coverImage: z.string().url().optional(),
+      photos: z.array(z.string().url()).optional(),
       rating: z.number().min(1).max(5).optional(),
       relatedArtists: z.array(z.string()).optional(),
       videos: z.array(z.object({

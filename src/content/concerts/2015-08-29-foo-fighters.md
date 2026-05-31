@@ -17,6 +17,14 @@ venue: 'Wrigley Field'
 venueUrl: 'https://www.mlb.com/cubs/ballpark'
 city: 'Chicago'
 state: 'IL'
+coverImage: 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2015-08-29-foo-fighters/0_018.JPG'
+photos:
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2015-08-29-foo-fighters/0_018.JPG'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2015-08-29-foo-fighters/0_022.JPG'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2015-08-29-foo-fighters/0_023.JPG'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2015-08-29-foo-fighters/0_026.JPG'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2015-08-29-foo-fighters/0_030.JPG'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2015-08-29-foo-fighters/0_035.JPG'
 ---
 
 ## Cheap Trick

@@ -12,4 +12,8 @@ state: 'WI'
 videos:
   - title: 'The Airborne Toxic Event (footage)'
     url: 'https://www.youtube.com/watch?v=FVQGFnrMypM'
+coverImage: 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2014-10-17-the-airborne-toxic-event/0_007.JPG'
+photos:
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2014-10-17-the-airborne-toxic-event/0_007.JPG'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2014-10-17-the-airborne-toxic-event/0_008.JPG'
 ---

@@ -12,6 +12,11 @@ venue: 'Treasure Island'
 venueUrl: 'https://sftreasureisland.org/'
 city: 'San Francisco'
 state: 'CA'
+coverImage: 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2013-09-25-oracle-open-world-appreciation-event/0_011.JPG'
+photos:
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2013-09-25-oracle-open-world-appreciation-event/0_011.JPG'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2013-09-25-oracle-open-world-appreciation-event/0_012.JPG'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2013-09-25-oracle-open-world-appreciation-event/0_017.JPG'
 ---
 
 ## The Black Keys

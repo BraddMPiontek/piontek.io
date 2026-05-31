@@ -12,6 +12,12 @@ venueUrl: 'https://majesticmadison.com/'
 city: 'Madison'
 state: 'WI'
 setlistUrl: 'https://www.setlist.fm/setlist/car-seat-headrest/2018/majestic-theatre-madison-wi-63e85abf.html'
+coverImage: 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2018-09-06-car-seat-headrest/0_IMG_0802.jpg'
+photos:
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2018-09-06-car-seat-headrest/0_IMG_0802.jpg'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2018-09-06-car-seat-headrest/0_IMG_0804(1).jpg'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2018-09-06-car-seat-headrest/0_IMG_0804.jpg'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2018-09-06-car-seat-headrest/0_IMG_0805.jpg'
 ---
 
 ## Setlist

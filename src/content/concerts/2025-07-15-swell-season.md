@@ -8,6 +8,14 @@ venue: 'The Riverside Theater'
 venueUrl: 'https://www.pabsttheatergroup.com/events/venue/riverside-theater'
 city: 'Milwaukee'
 state: 'WI'
+coverImage: 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2025-07-15-the-swell-season/-1_IMG_8713.jpg'
+photos:
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2025-07-15-the-swell-season/-1_IMG_8713.jpg'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2025-07-15-the-swell-season/-1_IMG_8718.jpg'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2025-07-15-the-swell-season/0_IMG_8734.jpg'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2025-07-15-the-swell-season/0_IMG_8738.jpg'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2025-07-15-the-swell-season/0_IMG_8740.jpg'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2025-07-15-the-swell-season/0_IMG_8741.jpg'
 ---
 
 ## Setlist

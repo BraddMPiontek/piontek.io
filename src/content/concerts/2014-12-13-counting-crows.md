@@ -11,6 +11,13 @@ venueUrl: 'https://madisonorpheum.com/'
 city: 'Madison'
 state: 'WI'
 setlistUrl: 'https://www.setlist.fm/setlist/counting-crows/2014/orpheum-theatre-madison-wi-13cd19c9.html'
+coverImage: 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2014-12-13-counting-crows/0_007.JPG'
+photos:
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2014-12-13-counting-crows/0_007.JPG'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2014-12-13-counting-crows/0_009.JPG'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2014-12-13-counting-crows/0_010.JPG'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2014-12-13-counting-crows/0_011.JPG'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2014-12-13-counting-crows/0_IMG_0159(2).JPG'
 ---
 
 ## Setlist

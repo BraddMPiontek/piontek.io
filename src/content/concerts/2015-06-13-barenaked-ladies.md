@@ -15,6 +15,10 @@ venueUrl: 'https://www.summerfest.com/american-family-insurance-amp/'
 city: 'Milwaukee'
 state: 'WI'
 setlistUrl: 'https://www.setlist.fm/setlist/barenaked-ladies/2015/bmo-harris-pavilion-milwaukee-wi-13c93109.html'
+coverImage: 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2015-06-13-barenaked-ladies/+1_015.JPG'
+photos:
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2015-06-13-barenaked-ladies/+1_015.JPG'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2015-06-13-barenaked-ladies/0_016.JPG'
 ---
 
 ## Setlist

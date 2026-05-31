@@ -10,6 +10,12 @@ venueUrl: 'https://www.jamusa.com/riviera-theatre/'
 city: 'Chicago'
 state: 'IL'
 setlistUrl: 'https://www.setlist.fm/setlist/glen-hansard/2018/riviera-theatre-chicago-il-2bef3c32.html'
+coverImage: 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2018-03-18-glen-hansard/0_014.JPG'
+photos:
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2018-03-18-glen-hansard/0_014.JPG'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2018-03-18-glen-hansard/0_018.JPG'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2018-03-18-glen-hansard/0_019.JPG'
+  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2018-03-18-glen-hansard/0_020.JPG'
 ---
 
 ## Setlist
