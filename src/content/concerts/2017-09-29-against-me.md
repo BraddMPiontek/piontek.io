@@ -13,10 +13,10 @@ venueUrl: 'https://majesticmadison.com/venue/live-on-king-street/'
 city: 'Madison'
 state: 'WI'
 setlistUrl: 'https://www.setlist.fm/setlist/against-me/2017/live-on-king-street-madison-wi-13e24d95.html'
-coverImage: 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2017-09-29-against-me/0_011.JPG'
+coverImage: 'https://assets.piontek.io/concerts/2017-09-29-against-me/0_011.JPG'
 photos:
-  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2017-09-29-against-me/0_011.JPG'
-  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2017-09-29-against-me/0_014.JPG'
+  - 'https://assets.piontek.io/concerts/2017-09-29-against-me/0_011.JPG'
+  - 'https://assets.piontek.io/concerts/2017-09-29-against-me/0_014.JPG'
 ---
 
 ## Setlist

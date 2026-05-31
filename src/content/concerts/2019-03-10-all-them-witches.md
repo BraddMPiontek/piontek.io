@@ -11,12 +11,12 @@ venueUrl: 'https://www.high-noon.com/'
 city: 'Madison'
 state: 'WI'
 setlistUrl: 'https://www.setlist.fm/setlist/all-them-witches/2019/high-noon-saloon-madison-wi-b92192a.html'
-coverImage: 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2019-03-10-all-them-witches/0_IMG_1087.JPG'
+coverImage: 'https://assets.piontek.io/concerts/2019-03-10-all-them-witches/0_IMG_1087.JPG'
 photos:
-  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2019-03-10-all-them-witches/0_IMG_1087.JPG'
-  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2019-03-10-all-them-witches/0_IMG_1088.jpg'
-  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2019-03-10-all-them-witches/0_IMG_1090.jpg'
-  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2019-03-10-all-them-witches/0_IMG_1091.jpg'
+  - 'https://assets.piontek.io/concerts/2019-03-10-all-them-witches/0_IMG_1087.JPG'
+  - 'https://assets.piontek.io/concerts/2019-03-10-all-them-witches/0_IMG_1088.jpg'
+  - 'https://assets.piontek.io/concerts/2019-03-10-all-them-witches/0_IMG_1090.jpg'
+  - 'https://assets.piontek.io/concerts/2019-03-10-all-them-witches/0_IMG_1091.jpg'
 ---
 
 ## Setlist

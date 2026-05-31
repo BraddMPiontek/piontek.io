@@ -12,7 +12,7 @@ videos:
     url: 'https://www.youtube.com/watch?v=2p3l2Fw5GmU'
 city: 'Madison'
 state: 'WI'
-coverImage: 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2019-05-18-violent-femmes/0_IMG_1218.JPG'
+coverImage: 'https://assets.piontek.io/concerts/2019-05-18-violent-femmes/0_IMG_1218.JPG'
 photos:
-  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2019-05-18-violent-femmes/0_IMG_1218.JPG'
+  - 'https://assets.piontek.io/concerts/2019-05-18-violent-femmes/0_IMG_1218.JPG'
 ---

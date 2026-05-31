@@ -11,11 +11,11 @@ venueUrl: 'https://pabsttheater.org/'
 city: 'Milwaukee'
 state: 'WI'
 setlistUrl: 'https://www.setlist.fm/setlist/father-john-misty/2018/pabst-theater-milwaukee-wi-5be9e710.html'
-coverImage: 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2018-09-20-father-john-misty/0_IMG_0815.jpg'
+coverImage: 'https://assets.piontek.io/concerts/2018-09-20-father-john-misty/0_IMG_0815.jpg'
 photos:
-  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2018-09-20-father-john-misty/0_IMG_0815.jpg'
-  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2018-09-20-father-john-misty/0_IMG_0816.jpg'
-  - 'https://pub-49ffedfc362643e1ac13fc61da95ab99.r2.dev/concerts/2018-09-20-father-john-misty/0_IMG_0817.jpg'
+  - 'https://assets.piontek.io/concerts/2018-09-20-father-john-misty/0_IMG_0815.jpg'
+  - 'https://assets.piontek.io/concerts/2018-09-20-father-john-misty/0_IMG_0816.jpg'
+  - 'https://assets.piontek.io/concerts/2018-09-20-father-john-misty/0_IMG_0817.jpg'
 ---
 
 ## Setlist
