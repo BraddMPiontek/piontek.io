@@ -74,12 +74,6 @@ const seenCount = relatedHeadlining.length + relatedAsSupport.length + 1;
   <body>
     <Header />
     <main data-pagefind-body>
-      {coverImage && (
-        <div class="hero-image">
-          <img src={coverImage} alt={`${headliner} at ${venue}`} loading="lazy" />
-        </div>
-      )}
-
       <div class="concert-header">
         <a href="/concerts/" class="back">← All concerts</a>
 
@@ -572,23 +566,6 @@ const seenCount = relatedHeadlining.length + relatedAsSupport.length + 1;
     font-style: italic;
     opacity: 0.6;
     margin-left: auto;
-  }
-
-  /* Hero image */
-  .hero-image {
-    width: 100%;
-    margin-bottom: 2em;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    overflow: hidden;
-  }
-  .hero-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-    max-height: 420px;
-    object-fit: contain;
-    background: var(--bg-surface);
   }
 
   /* Photo gallery */
