@@ -9,6 +9,13 @@ venue: 'The Sylvee'
 venueUrl: 'https://www.thesylvee.com/'
 city: 'Madison'
 state: 'WI'
+coverImage: 'https://assets.piontek.io/concerts/2025-07-11-the-crane-wives/0_IMG_8678.jpg'
+photos:
+  - 'https://assets.piontek.io/concerts/2025-07-11-the-crane-wives/0_IMG_8678.jpg'
+  - 'https://assets.piontek.io/concerts/2025-07-11-the-crane-wives/0_IMG_8683.jpg'
+  - 'https://assets.piontek.io/concerts/2025-07-11-the-crane-wives/0_IMG_8685.jpg'
+  - 'https://assets.piontek.io/concerts/2025-07-11-the-crane-wives/0_IMG_8693.JPG'
+  - 'https://assets.piontek.io/concerts/2025-07-11-the-crane-wives/0_IMG_8696.jpg'
 ---
 
 ## Setlist

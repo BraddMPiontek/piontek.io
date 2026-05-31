@@ -11,6 +11,16 @@ venueUrl: 'https://pabsttheater.org/venue/the-riverside-theater/'
 city: 'Milwaukee'
 state: 'WI'
 setlistUrl: 'https://www.setlist.fm/setlist/the-national/2018/riverside-theater-milwaukee-wi-1beb15e0.html'
+coverImage: 'https://assets.piontek.io/concerts/2018-07-30-the-national/0_002.JPG'
+photos:
+  - 'https://assets.piontek.io/concerts/2018-07-30-the-national/0_002.JPG'
+  - 'https://assets.piontek.io/concerts/2018-07-30-the-national/0_003.JPG'
+  - 'https://assets.piontek.io/concerts/2018-07-30-the-national/0_007.JPG'
+  - 'https://assets.piontek.io/concerts/2018-07-30-the-national/0_010.JPG'
+  - 'https://assets.piontek.io/concerts/2018-07-30-the-national/0_011.JPG'
+  - 'https://assets.piontek.io/concerts/2018-07-30-the-national/0_012.JPG'
+  - 'https://assets.piontek.io/concerts/2018-07-30-the-national/0_013.JPG'
+  - 'https://assets.piontek.io/concerts/2018-07-30-the-national/0_IMG_0632.jpg'
 ---
 
 ## Setlist

@@ -11,6 +11,10 @@ venue: 'Orpheum Theater'
 venueUrl: 'https://madisonorpheum.com/'
 city: 'Madison'
 state: 'WI'
+coverImage: 'https://assets.piontek.io/concerts/2016-06-01-lord-huron/0_002.JPG'
+photos:
+  - 'https://assets.piontek.io/concerts/2016-06-01-lord-huron/0_002.JPG'
+  - 'https://assets.piontek.io/concerts/2016-06-01-lord-huron/0_004.JPG'
 ---
 
 ## Nathaniel Rateliff & The Night Sweats

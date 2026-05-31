@@ -11,6 +11,16 @@ venueUrl: 'https://www.thesylvee.com/'
 city: 'Madison'
 state: 'WI'
 setlistUrl: 'https://www.setlist.fm/setlist/death-cab-for-cutie/2018/the-sylvee-madison-wi-53e97fed.html'
+coverImage: 'https://assets.piontek.io/concerts/2018-10-03-death-cab-for-cutie/0_IMG_0831.jpg'
+photos:
+  - 'https://assets.piontek.io/concerts/2018-10-03-death-cab-for-cutie/0_IMG_0831.jpg'
+  - 'https://assets.piontek.io/concerts/2018-10-03-death-cab-for-cutie/0_IMG_0832.jpg'
+  - 'https://assets.piontek.io/concerts/2018-10-03-death-cab-for-cutie/0_IMG_0833.jpg'
+  - 'https://assets.piontek.io/concerts/2018-10-03-death-cab-for-cutie/0_IMG_0834.jpg'
+  - 'https://assets.piontek.io/concerts/2018-10-03-death-cab-for-cutie/0_IMG_0836.jpg'
+  - 'https://assets.piontek.io/concerts/2018-10-03-death-cab-for-cutie/0_IMG_0837.jpg'
+  - 'https://assets.piontek.io/concerts/2018-10-03-death-cab-for-cutie/0_IMG_0838.jpg'
+  - 'https://assets.piontek.io/concerts/2018-10-03-death-cab-for-cutie/0_IMG_0839.jpg'
 ---
 
 ## Setlist

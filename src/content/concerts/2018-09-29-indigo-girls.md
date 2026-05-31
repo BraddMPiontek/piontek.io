@@ -11,6 +11,10 @@ venueUrl: 'https://madisonorpheum.com/'
 city: 'Madison'
 state: 'WI'
 setlistUrl: 'https://www.setlist.fm/setlist/indigo-girls/2018/orpheum-theatre-madison-wi-53e95b51.html'
+coverImage: 'https://assets.piontek.io/concerts/2018-09-29-indigo-girls/0_IMG_0828.jpg'
+photos:
+  - 'https://assets.piontek.io/concerts/2018-09-29-indigo-girls/0_IMG_0828.jpg'
+  - 'https://assets.piontek.io/concerts/2018-09-29-indigo-girls/0_IMG_0829.jpg'
 ---
 
 ## Setlist

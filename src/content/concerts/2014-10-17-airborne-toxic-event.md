@@ -12,4 +12,8 @@ state: 'WI'
 videos:
   - title: 'The Airborne Toxic Event (footage)'
     url: 'https://www.youtube.com/watch?v=FVQGFnrMypM'
+coverImage: 'https://assets.piontek.io/concerts/2014-10-17-the-airborne-toxic-event/0_007.JPG'
+photos:
+  - 'https://assets.piontek.io/concerts/2014-10-17-the-airborne-toxic-event/0_007.JPG'
+  - 'https://assets.piontek.io/concerts/2014-10-17-the-airborne-toxic-event/0_008.JPG'
 ---

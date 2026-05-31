@@ -8,6 +8,10 @@ venue: 'Auditorium Theatre'
 venueUrl: 'https://www.auditoriumtheatre.org/'
 city: 'Chicago'
 state: 'IL'
+coverImage: 'https://assets.piontek.io/concerts/2025-07-18-the-swell-season/0_IMG_8798.jpg'
+photos:
+  - 'https://assets.piontek.io/concerts/2025-07-18-the-swell-season/0_IMG_8798.jpg'
+  - 'https://assets.piontek.io/concerts/2025-07-18-the-swell-season/0_IMG_8802.jpg'
 ---
 
 ## Setlist

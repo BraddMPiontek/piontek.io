@@ -11,6 +11,10 @@ venueUrl: 'https://uwbadgers.com/sports/2015/8/21/GEN_2014010135.aspx'
 city: 'Madison'
 state: 'WI'
 setlistUrl: 'https://www.setlist.fm/setlist/foo-fighters/2017/kohl-center-madison-wi-be3411a.html'
+coverImage: 'https://assets.piontek.io/concerts/2017-11-07-foo-fighters/+1_005.JPG'
+photos:
+  - 'https://assets.piontek.io/concerts/2017-11-07-foo-fighters/+1_005.JPG'
+  - 'https://assets.piontek.io/concerts/2017-11-07-foo-fighters/+1_009.JPG'
 ---
 
 ## Setlist

@@ -11,6 +11,13 @@ venueUrl: 'https://www.overture.org/'
 city: 'Madison'
 state: 'WI'
 setlistUrl: 'https://www.setlist.fm/setlist/chris-cornell/2016/overture-hall-madison-wi-2bfffcfe.html'
+coverImage: 'https://assets.piontek.io/concerts/2016-07-05-chris-cornell/+1_012.JPG'
+photos:
+  - 'https://assets.piontek.io/concerts/2016-07-05-chris-cornell/+1_012.JPG'
+  - 'https://assets.piontek.io/concerts/2016-07-05-chris-cornell/+1_013.JPG'
+  - 'https://assets.piontek.io/concerts/2016-07-05-chris-cornell/0_024.JPG'
+  - 'https://assets.piontek.io/concerts/2016-07-05-chris-cornell/0_029.JPG'
+  - 'https://assets.piontek.io/concerts/2016-07-05-chris-cornell/0_031.JPG'
 ---
 
 ## Setlist

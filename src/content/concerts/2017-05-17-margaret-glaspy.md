@@ -9,4 +9,9 @@ venue: 'The Shitty Barn'
 venueUrl: 'https://www.shittybarnsessions.com/'
 city: 'Spring Green'
 state: 'WI'
+coverImage: 'https://assets.piontek.io/concerts/2017-05-17-margaret-glaspy/0_004.JPG'
+photos:
+  - 'https://assets.piontek.io/concerts/2017-05-17-margaret-glaspy/0_004.JPG'
+  - 'https://assets.piontek.io/concerts/2017-05-17-margaret-glaspy/0_005.JPG'
+  - 'https://assets.piontek.io/concerts/2017-05-17-margaret-glaspy/0_006.JPG'
 ---
