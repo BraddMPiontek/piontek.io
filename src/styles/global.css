@@ -46,7 +46,8 @@ h1 {
 	background: linear-gradient(90deg, var(--accent), var(--accent-purple));
 	-webkit-background-clip: text;
 	background-clip: text;
-	color: transparent;
+	-webkit-text-fill-color: transparent;
+	color: var(--accent);
 }
 
 h2 {
