@@ -43,16 +43,10 @@ h6 {
 
 h1 {
 	font-size: 3.052em;
-	color: var(--accent);
-}
-
-@supports (background-clip: text) or (-webkit-background-clip: text) {
-	h1 {
-		background: linear-gradient(90deg, var(--accent), var(--accent-purple));
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-	}
+	background: linear-gradient(90deg, var(--accent), var(--accent-purple));
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
 }
 
 h2 {
