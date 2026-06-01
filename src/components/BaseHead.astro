@@ -32,6 +32,28 @@ const { title, description, image = '/favicon.svg' } = Astro.props;
 
 <Font cssVariable="--font-atkinson" preload />
 
+<script is:inline>
+  // Pagefind injects a <link rel="stylesheet"> after initial paint.
+  // In Chrome/Firefox on Windows, the resulting style recalculation breaks
+  // background-clip:text on h1. Re-applying it inline after the load event
+  // forces a targeted repaint that restores the gradient.
+  new MutationObserver(function(ms) {
+    ms.forEach(function(m) {
+      m.addedNodes.forEach(function(node) {
+        if (node.nodeName === 'LINK' && node.rel === 'stylesheet') {
+          node.addEventListener('load', function() {
+            document.querySelectorAll('h1').forEach(function(el) {
+              el.style.webkitBackgroundClip = 'text';
+              el.style.backgroundClip = 'text';
+              el.style.webkitTextFillColor = 'transparent';
+            });
+          }, { once: true });
+        }
+      });
+    });
+  }).observe(document.head, { childList: true });
+</script>
+
 <!-- Mastodon verification -->
 <link rel="me" href="https://theforkiverse.com/@skooze" />
 
